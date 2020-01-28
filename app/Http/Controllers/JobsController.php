@@ -17,8 +17,8 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Jobs::all();
-        return view('Jobs.index')->with('allJobs', $jobs);
+        $allJobs = Jobs::all();
+        return view('Jobs.index')->with('allJobs', $allJobs);
     }
 
     /**
@@ -28,9 +28,13 @@ class JobsController extends Controller
      */
     public function create()
     {
-        $userid = Auth::user()->id;
-        $companies = DB::table('companies')->where('userID', $userid)->pluck('name');
-        return View('Jobs.create')->with('companies', $companies);
+        if(Auth::check()){
+            $userid = Auth::user()->id;
+            $companies = DB::table('companies')->where('userID', $userid)->pluck('name');
+            return View('Jobs.create')->with('companies', $companies);
+        } else {
+            return redirect('login');
+        }
     }
 
     /**
@@ -74,7 +78,12 @@ class JobsController extends Controller
      */
     public function show($id)
     {
-        //
+        $job = Jobs::findOrFail($id);
+
+        $created_at = $job -> created_at;
+        $date = substr($created_at, 0, 10);
+        
+        return View('Jobs.show', ['job' => $job], ['date' => $date]);
     }
 
     /**
@@ -85,7 +94,19 @@ class JobsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $job = Jobs::findOrFail($id);
+        $company = Companies::findOrFail(DB::table('companies')->where('name', $job->company)->pluck('id'));
+
+        if(Auth::check()){
+            if($user->isAdmin = true || $company->userID = $user->id) {
+                return View('Jobs.edit', ['job' => $job]);
+            } else{
+                return redirect('/'); 
+            }
+        } else {
+            return redirect('login');
+        }
     }
 
     /**
@@ -108,6 +129,9 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job = Jobs::Find($id);
+        $job->delete();
+
+        return redirect('jobs')->with('success', 'Task was successful!');
     }
 }

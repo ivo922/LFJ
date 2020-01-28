@@ -7,8 +7,22 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="card">
-            <table class="table"></table>
+        <div class="card" style="width:1000px; padding:10px 5%;">
+            <table class="table">
+                <tbody>
+                    @foreach($allJobs as $key => $value)
+                    <tr height="70px">
+                        <td width="70%">
+                            <span style="font-size:1.1rem"><strong><a href="{{url('showjob', $value->id )}}">{{ $value -> position }}</a></strong></span><br />
+                            <span class="small mark" style="color:grey"><strong>{{ $value -> category }}</strong></span> 
+                            <span class="small mark" style="color:grey"><strong>{{ $value -> type }}</strong></span> 
+                            <span class="small mark" style="color:grey"><strong>{{ $value -> place }}</strong></span>
+                        </td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
