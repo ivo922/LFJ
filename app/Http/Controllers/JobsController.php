@@ -17,7 +17,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $allJobs = Jobs::all();
+        $allJobs = DB::table('job_offers')->orderBy('created_at', 'desc')->paginate(10);
         return view('Jobs.index')->with('allJobs', $allJobs);
     }
 
@@ -94,7 +94,7 @@ class JobsController extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user();
+        /*$user = Auth::user();
         $job = Jobs::findOrFail($id);
         $company = Companies::findOrFail(DB::table('companies')->where('name', $job->company)->pluck('id'));
 
@@ -106,7 +106,7 @@ class JobsController extends Controller
             }
         } else {
             return redirect('login');
-        }
+        }*/
     }
 
     /**
@@ -129,7 +129,7 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-        $job = Jobs::Find($id);
+        $job = Jobs::find($id);
         $job->delete();
 
         return redirect('jobs')->with('success', 'Task was successful!');

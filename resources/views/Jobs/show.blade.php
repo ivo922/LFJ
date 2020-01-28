@@ -12,7 +12,9 @@
             <span class="float-right">Published on {{ $date }}</span>
         </div>
         <div class="card" style="width:1000px; padding:10px 5%;">
-            
+            <p>
+              
+            </p>
         </div>
     </div>
 </div>

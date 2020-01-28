@@ -19,5 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('showjob/{id}', 'JobsController@show');
+Route::get('showuser/{id}', 'UsersController@show');
+Route::get('edituser/{id}', 'UsersController@edit');
+Route::get('banuser/{id}', 'UsersController@ban');
 
 Route::resource('jobs', 'JobsController');
+Route::resource('users', 'UsersController');
