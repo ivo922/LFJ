@@ -17,9 +17,13 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $allUsers = User::paginate(20);
-        $user = Auth::user();
-        return View('Users.index', ['allUsers' => $allUsers], ['user' => $user]);
+        if(Auth::check()){
+            $allUsers = User::paginate(20);
+            $user = Auth::user();
+            return View('Users.index', ['allUsers' => $allUsers], ['user' => $user]);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -51,9 +55,13 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::Find($id);
-        $companies = DB::table('companies')->where('userID', $user->id)->get();
-        return View('Users.show', ['user' => $user], ['companies' => $companies]);
+        if(Auth::check()){
+            $user = User::Find($id);
+            $companies = DB::table('companies')->where('userID', $user->id)->get();
+            return View('Users.show', ['user' => $user], ['companies' => $companies]);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -125,6 +133,8 @@ class UsersController extends Controller
             } else {
                 return redirect('/');
             }
+        } else {
+            return redirect('/');
         }
     }
 }
