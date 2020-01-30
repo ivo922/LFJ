@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
-use Illuminate\Support\Facades\DB; //Check if needed
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //Check if needed
 
@@ -74,10 +74,10 @@ class UsersController extends Controller
     {
         if(Auth::check()){
             $user = User::find($id);
-            if($user->id == Auth::user()->id){
-                return View('Users.my_profile', ['user' => $user]);
-            } elseif(Auth::user()->isAdmin == 1){
+            if(Auth::user()->isAdmin == 1){
                 return View('Users.edit', ['user' => $user]);
+            } elseif($user->id == Auth::user()->id){
+                return View('Users.my_profile', ['user' => $user]);
             } else {
                 return redirect('/');
             }
@@ -95,7 +95,10 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+
     }
 
     /**
