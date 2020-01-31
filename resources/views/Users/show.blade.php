@@ -7,15 +7,15 @@
 
 <div class="container">
     <div class="row justify-content-center" >
-        <div class="card col-4 text-center" style="padding:10px 5%;">
+        <div class="card col-3 text-center" style="padding:10px 5%;">
             <strong>ID: <span class="mark">{{ $user->id }}</span></strong><br />
             <strong>Username: <span class="mark">{{ $user->name }}</span></strong><br />
             <strong>E-Mail: <span class="mark">{{ $user->email }}</span></strong>
         </div>
-        <div class="card col-6 text-center" style="padding:10px 5% 0;">
-            <strong>Companies: 
+        <div class="card col-4 text-center" style="padding:10px 5% 0;">
+            <strong>Companies:<br />
             @foreach($companies as $key => $value)
-                <span class="mark">{{ $value->name }} </span>
+                <a href="{{ url('companies', $value->id) }}"><span class="mark">{{ $value->name }} </span></a>
             @endforeach</strong>
         </div>
         <div class="card col-2 text-center" style="padding:10px 0;">

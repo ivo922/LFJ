@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //Check if needed
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -18,9 +19,13 @@ class UsersController extends Controller
     public function index()
     {
         if(Auth::check()){
-            $allUsers = User::paginate(20);
-            $user = Auth::user();
-            return View('Users.index', ['allUsers' => $allUsers], ['user' => $user]);
+            if(Auth::user()->isAdmin == 1){
+                $allUsers = User::paginate(20);
+                $user = Auth::user();
+                return View('Users.index', ['allUsers' => $allUsers], ['user' => $user]);
+            } else {
+                return redirect('/');
+            }
         } else {
             return redirect('/');
         }
@@ -56,9 +61,16 @@ class UsersController extends Controller
     public function show($id)
     {
         if(Auth::check()){
-            $user = User::Find($id);
-            $companies = DB::table('companies')->where('userID', $user->id)->get();
-            return View('Users.show', ['user' => $user], ['companies' => $companies]);
+            if(Auth::user()->isAdmin == 1){
+                $user = User::Find($id);
+                $companies = DB::table('companies')->where('userID', $user->id)->get();
+                return View('Users.show', ['user' => $user], ['companies' => $companies]);
+            } elseif(Auth::user()->id == $id) {
+                $user = Auth::user();
+                return View('Users.my_profile', ['user' => $user]);
+            } else {
+                return redirect('/');
+            }
         } else {
             return redirect('/');
         }
@@ -96,9 +108,16 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-
+        
+        if(strlen(trim($request->get('name'))) != 0){
+            $user->name = $request->get('name');
+        }
+        if(strlen(trim($request->get('email'))) != 0){
+            $user->email = $request->get('email');
+        }
+        $user->isAdmin = $request->get('isAdmin');
+        $user->save();
+        return redirect()->action('UsersController@show', ['id' => $user->id]);
     }
 
     /**
@@ -140,4 +159,23 @@ class UsersController extends Controller
             return redirect('/');
         }
     }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+            'new_password' => 'required|string|confirmed|min:6|different:password'          
+        ]);
+
+        if (Hash::check($request->password, Auth::user()->password) == false)
+        {
+            return response(['message' => 'Unauthorized'], 401);  
+        } 
+
+        $user = Auth::user();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response(['message' => 'Your password has been updated successfully.']);
+}
 }

@@ -13,5 +13,5 @@ class Jobs extends Model
      */
     protected $table = 'job_offers';
 
-    protected $fillable = ['position', 'category', 'place', 'company', 'type', 'created_at'];
+    protected $fillable = ['position', 'category', 'place', 'company', 'type', 'created_at', 'description', 'logo', ];
 }

@@ -15,7 +15,7 @@
                             {{csrf_field()}}
                             <!--Position-->
                                 <div class="form-group row">
-                                    <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
+                                    <label for="position" class="col-md-4 col-form-label text-md-right">Position:</label>
 
                                     <div class="col-md-6">
                                         <input id="position" class="form-control" type="text" name="position">
@@ -23,7 +23,7 @@
                                 </div>
                             <!--Category-->
                                 <div class="form-group row">
-                                    <label for="category" class="col-md-4 col-form-label text-md-right">Category</label>
+                                    <label for="category" class="col-md-4 col-form-label text-md-right">Category:</label>
 
                                     <div class="col-md-6">
                                         <input id="category" class="form-control" type="text" name="category">
@@ -31,7 +31,7 @@
                                 </div>
                             <!--Place-->
                                 <div class="form-group row">
-                                    <label for="place" class="col-md-4 col-form-label text-md-right">Place</label>
+                                    <label for="place" class="col-md-4 col-form-label text-md-right">Place:</label>
 
                                     <div class="col-md-6">
                                         <input id="place" class="form-control" type="text" name="place">
@@ -39,7 +39,7 @@
                                 </div>
                             <!--Company-->
                                 <div class="form-group row">
-                                    <label for="company" class="col-md-4 col-form-label text-md-right">Company</label>
+                                    <label for="company" class="col-md-4 col-form-label text-md-right">Company:</label>
 
                                     <div class="col-md-6">
                                         <select id="company" class="form-control" name="company">
@@ -52,24 +52,32 @@
 
                             <!--Type-->
                                 <div class="form-group row">
-                                        <label for="type" class="col-md-4 col-form-label text-md-right">Type</label>
+                                    <label for="type" class="col-md-4 col-form-label text-md-right">Type:</label>
 
-                                        <div class="col-md-6">
-                                            <select id="type" class="form-control" name="type">
-                                                <option value="Full-Time">Full-Time</option>
-                                                <option value="Full-Time">Part-Time</option>
-                                                <option value="Full-Time">Internship</option>
-                                            </select>
-                                        </div>
+                                    <div class="col-md-6">
+                                        <select id="type" class="form-control" name="type">
+                                            <option value="Full-Time">Full-Time</option>
+                                            <option value="Full-Time">Part-Time</option>
+                                            <option value="Full-Time">Internship</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
-                                            Publish
-                                            </button>
-                                        </div>
+                                </div>
+                        <!--Description-->
+                                <div class="form-group row">
+                                    <label for="description" class="col-md-4 col-form-label text-md-right">Description:</label>
+
+                                    <div class="col-md-6">
+                                        <textarea id="description" class="form-control" type="text" rows="5" name="description" placeholder="Describe."></textarea>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                        Publish
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>   

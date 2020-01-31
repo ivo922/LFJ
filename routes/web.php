@@ -21,8 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('showjob/{id}', 'JobsController@show');
 Route::get('showuser/{id}', 'UsersController@show');
 Route::get('edituser/{id}', 'UsersController@edit');
-Route::post('updateuser/{id}', 'UsersController@update');
+Route::put('updateuser/{id}', 'UsersController@update');
 Route::post('banuser/{id}', 'UsersController@ban');
+Route::post('updatePassword', 'UsersController@updatePassword');
+Route::get('updatePassword', function(){ abort(404); });
 
 Route::resource('jobs', 'JobsController');
 Route::resource('users', 'UsersController');
+Route::resource('companies', 'CompaniesController');

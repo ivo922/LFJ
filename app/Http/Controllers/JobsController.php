@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Jobs;
+use App\Companies;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,7 @@ class JobsController extends Controller
     public function index()
     {
         $allJobs = DB::table('job_offers')->orderBy('created_at', 'desc')->paginate(10);
-        return view('Jobs.index')->with('allJobs', $allJobs);
+        return View('Jobs.index', ['allJobs' => $allJobs]);
     }
 
     /**
@@ -49,24 +50,30 @@ class JobsController extends Controller
                     'category' => 'required',
                     'place' => 'required',
                     'company' => 'required',
-                    'type' => 'required', );
+                    'type' => 'required',
+                    'description' => 'required' );
         $validator = Validator::make($request->all(), $rules);
-
         if($validator->fails()) {
             return redirect('jobs/create')
                 ->withErrors($validator)
                 ->withInput($request->all());
         } else {
+            $companyName = $request->get('company');
+            $company = Companies::where('name', $companyName)->first();
+            $logo = $company->logo;
             $job = new Jobs([
                 'position' => $request->get('position'),
                 'category' => $request->get('category'),
                 'place' => $request->get('place'),
                 'company' => $request->get('company'),
-                'type' => $request->get('type')
+                'type' => $request->get('type'),
+                'description' => $request->get('description'),
+                'logo' => $logo
             ]);
 
             $job->save();
             return redirect('/');
+            print $logo; die;
         }
     }
 
