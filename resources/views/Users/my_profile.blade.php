@@ -8,11 +8,11 @@
 <div class="container">
     <div class="row justify-content-center" >
         <div id="sidebar" class="col-md-3 text-center">
-            <button id="my_profile-menu" class="btn btn-info btn-sm tablinks" style="width:100%" onclick="openTab(event, 'my_profile')">My Profile</button>
-            <button id="my_companies-menu" class="btn btn-outline-info btn-sm tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'my_profile')">My Companies</button>
-            <button id="change_password-menu" class="btn btn-outline-info btn-sm tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'change_password')">Change Password</button>
-            <button id="change_email-menu" class="btn btn-outline-info btn-sm tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'change_email')">Change E-mail</button>
-            <button id="delete_account-menu" class="btn btn-danger btn-sm btn-radius tablinks" style="margin-top:10px;">Delete Account</button>
+            <button id="my_profile-menu" class="btn btn-success btn-sm shadow-none tablinks" style="width:100%" onclick="openTab(event, 'my_profile')">My Profile</button>
+            <button id="my_companies-menu" class="btn btn-outline-success btn-sm shadow-none tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'my_profile')">My Companies</button>
+            <button id="change_password-menu" class="btn btn-outline-success btn-sm shadow-none tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'change_password')">Change Password</button>
+            <button id="change_email-menu" class="btn btn-outline-success btn-sm shadow-none tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'change_email')">Change E-mail</button>
+            <button id="delete_account-menu" class="btn btn-danger btn-sm btn-radius shadow-none tablinks" style="margin-top:10px;">Delete Account</button>
         </div>
         <div class="card col-md-9">
         <!--My Profile-->
@@ -51,7 +51,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-2 offset-md-5">
-                            <button type="submit" class="btn btn-outline-primary btn-sm" onclick="return confirm('Are you sure you want to change your password?');">Update</button>
+                            <button type="submit" class="btn btn-outline-success btn-sm" onclick="return confirm('Are you sure you want to change your password?');">Update</button>
                         </div>
                     </div>
                   </form>
@@ -79,7 +79,7 @@
 
                   <div class="form-group row">
                         <div class="col-md-2 offset-md-5">
-                            <button type="submit" class="btn btn-outline-primary btn-sm" onclick="return confirm('Are you sure you want to change your E-mail?');">Update</button>
+                            <button type="submit" class="btn btn-outline-success btn-sm" onclick="return confirm('Are you sure you want to change your E-mail?');">Update</button>
                         </div>
                     </div>
                 </form>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Companies;
+use App\Jobs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,8 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Companies::all();
+        return View("Companies.index")->with('companies', $companies);
     }
 
     /**
@@ -76,9 +78,26 @@ class CompaniesController extends Controller
      */
     public function show($id)
     {
-        $company = Companies::find($id);
+        $user = Auth::user();
+        if(Auth::check()) {
+            $isLoggedIn = 1;
+        } else {
+            $isLoggedIn = 0;
+        }
+        $company = Companies::findOrFail($id);
+        $jobsByCompany = Jobs::where('company', $company->name)->get();
+        $isJobsEmpty; //Checks if $jobsByCompany is empty
+        if($jobsByCompany->isEmpty()){
+            $isJobsEmpty = 1;
+        }else{
+            $isJobsEmpty = 0;
+        }
         if($company != null){
-            return View('Companies.show', ['company' => $company]);
+            return View('Companies.show')->with('company', $company)
+            ->with('jobs', $jobsByCompany)
+            ->with('isJobsEmpty', $isJobsEmpty)
+            ->with('user', $user)
+            ->with('isLoggedIn', $isLoggedIn);
         } else {
             abort(404);
         }
@@ -94,6 +113,7 @@ class CompaniesController extends Controller
     public function edit($id)
     {
         $company = Companies::findOrFail($id);
+        return View('Companies.edit', ['company' => $company]);
 
     }
 
@@ -104,9 +124,57 @@ class CompaniesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //Difficulty: 11/10 >:(
     {
-        //
+        $company = Companies::findOrFail($id);
+
+        if($request->logo == null){ //if no new image is uploaded, $path changes to the already existing one
+            $path = $company->logo;
+        } else {
+            $rules = array('logo' => 'image', );
+            $validator = Validator::make($request->all(), $rules);
+            if($validator->fails()){
+                return redirect('companies/' . $company->id . '/edit')
+                ->withErrors($validator)
+                ->withInput($request->all());
+            } else {
+                $path = $request->file('logo')->store('images', 'public');
+            }
+        }
+
+        if($request->get('name') == null){ //if the name isn't updated, change it to the default one
+            $requestData = $request->all(); //create a new array to store the modified data coming from the form
+            $requestData['name'] = $company->name; //change the name value to the name stored in database
+            $rules = array('description' => 'max:255|min:10', ); //validate only the description as the name isn't changed
+            $validator = Validator::make($requestData, $rules); //pass the new array instead of $request->all()
+            if($validator->fails()){
+                return redirect('companies/' . $company->id . '/edit')
+                ->withErrors($validator)
+                ->withInput($requestData); //old: $request->all()
+            } else {
+                $company->name = $requestData['name'];
+                $company->logo = $path;
+                $company->description = $requestData['description'];
+                $company->save();
+                return redirect('companies/' . $company->id);
+            } 
+        } else {
+            $rules = array('name' => 'unique:companies|min:3|max:32',
+                'description' => 'max:255|min:10', );
+            $validator = Validator::make($request->all(), $rules);
+            if($validator->fails()){
+                return redirect('companies/' . $company->id . '/edit')
+                ->withErrors($validator)
+                ->withInput($request->all());
+            } else {
+                $company->name = $request->get('name');
+                $company->logo = $path;
+                $company->description = $request->get('description');
+                $company->save();
+                return redirect('companies/' . $company->id);
+            } 
+        }
+                  
     }
 
     /**
@@ -118,7 +186,12 @@ class CompaniesController extends Controller
     public function destroy($id)
     {
         $company = Companies::find($id);
+        $jobs = Jobs::where('company', $company->name)->get();
+        foreach($jobs as $key => $value){
+            $value->delete();
+        }
         $company->delete();
+
 
         return redirect("/");
     }

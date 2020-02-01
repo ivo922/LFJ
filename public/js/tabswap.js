@@ -20,11 +20,11 @@ function openTab(evt, tabName) {
 
   //Change active button's style and reset all others'.
   for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" btn-info", " btn-outline-info");
+    tablinks[i].className = tablinks[i].className.replace(" btn-success", " btn-outline-success");
   }
   for (i = 0; i < tablinks.length; i++) {
     if (tablinks[i].classList.contains("active")){
-      tablinks[i].className = tablinks[i].className.replace(" btn-outline-info", " btn-info");
+      tablinks[i].className = tablinks[i].className.replace(" btn-outline-success", " btn-success");
     }
   }
 }

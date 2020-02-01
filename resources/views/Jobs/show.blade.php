@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class=card-header" style="width:1000px">
+        <div class="card-header" style="width:1000px">
             <span class="float-left"><a href="{{ url('jobs') }}">All Jobs</a> >> <strong>{{ $job -> position }}</strong></span>
             <span class="float-right">Published on {{ $date }}</span>
         </div>

@@ -26,7 +26,7 @@
                                 <label for="logo" class="col-md-4 col-form-label text-md-right">Upload Logo:</label>
 
                                 <div class="col-md-6">
-                                    <input id="logo" class="form-control-file border" type="file" name="logo">
+                                    <input id="logo" class="form-control-file border" type="file" accept="image/png, .jpeg, .jpg" name="logo">
                                 </div>
                             </div>
                         <!--Description-->

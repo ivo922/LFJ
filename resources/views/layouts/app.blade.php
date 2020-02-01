@@ -24,6 +24,30 @@
         .btn-outline-info:hover{
             color: white;
         }
+
+        a {
+            color:rgb(50, 150, 50);
+        }
+
+        a:hover {
+            text-decoration:none;
+            color:rgb(80, 200, 80);
+        }
+
+        .btn-link {
+            color:rgb(50, 150, 50);
+        }
+
+        .btn-link:hover {
+            text-decoration:none;
+            color:rgb(80, 200, 80);
+        }
+
+        .form-control:focus {
+            border-color:rgb(80, 200, 80);
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
     </style>
 </head>
 <body>
@@ -31,7 +55,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <!--{{ config('app.name', 'Laravel') }}-->
+                    <img src="\images\lfj-logo-new.png" alt="image"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

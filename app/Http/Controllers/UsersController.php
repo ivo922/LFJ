@@ -88,8 +88,6 @@ class UsersController extends Controller
             $user = User::find($id);
             if(Auth::user()->isAdmin == 1){
                 return View('Users.edit', ['user' => $user]);
-            } elseif($user->id == Auth::user()->id){
-                return View('Users.my_profile', ['user' => $user]);
             } else {
                 return redirect('/');
             }
@@ -178,4 +176,13 @@ class UsersController extends Controller
 
         return response(['message' => 'Your password has been updated successfully.']);
 }
+
+    public function myProfile(){
+        if(Auth::check()){
+            $user = Auth::user();
+            return View('Users.my_profile', ['user' => $user]);
+        } else {
+            return redirect('/');
+        }
+    }
 }
