@@ -14,13 +14,27 @@
     <script src="{{asset('js/tabswap.js')}}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">-->
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/buttons.css') }}" rel="stylesheet">
 
     <style>
+        .background-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/front-page-slide.jpg);
+            width: 100%;
+            height: 100vh;
+        }
+
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/front-page-slide.jpg);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+        }
+
         .btn-outline-info:hover{
             color: white;
         }
@@ -47,6 +61,14 @@
             border-color:rgb(80, 200, 80);
             box-shadow: none;
             -webkit-box-shadow: none;
+        }
+
+        .card-header {
+            background-color:white;
+        }
+
+        .card {
+            border-radius: 0;
         }
     </style>
 </head>
@@ -104,7 +126,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 background-image">
             @yield('content')
         </main>
     </div>

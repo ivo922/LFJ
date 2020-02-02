@@ -25,7 +25,7 @@ onclick="return confirm('Are you sure you want to delete this company? All job o
             @endif
         </div>
         <div class="card col-md-8 text-center" style="padding:20px 10px">
-            <img src="<?php echo asset('storage/' . $company->logo)?>" alt="logo" maxheight="200px" width="auto" style="margin:0 auto"/>
+            <img src="<?php echo asset('storage/' . $company->logo)?>" alt="logo" width="auto" style="margin:0 auto; max-height:200px"/>
             <h1 style="margin:10px">{{ $company->name }}</h1>
             <p>{{ $company->description }}</p>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Companies;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //Check if needed
@@ -66,7 +67,7 @@ class UsersController extends Controller
                 $companies = DB::table('companies')->where('userID', $user->id)->get();
                 return View('Users.show', ['user' => $user], ['companies' => $companies]);
             } elseif(Auth::user()->id == $id) {
-                $user = Auth::user();
+                return $this->myProfile();
                 return View('Users.my_profile', ['user' => $user]);
             } else {
                 return redirect('/');
@@ -180,7 +181,8 @@ class UsersController extends Controller
     public function myProfile(){
         if(Auth::check()){
             $user = Auth::user();
-            return View('Users.my_profile', ['user' => $user]);
+            $companies = Companies::where('userID', $user->id)->get();
+            return View('Users.my_profile', ['user' => $user], ['companies' => $companies]);
         } else {
             return redirect('/');
         }

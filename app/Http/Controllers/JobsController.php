@@ -86,11 +86,12 @@ class JobsController extends Controller
     public function show($id)
     {
         $job = Jobs::findOrFail($id);
-
+        //$company = DB::table('companies')->select('id')->where('name', $job->company)->first();
+        $company = DB::table('companies')->where('name', $job->company)->first();
         $created_at = $job -> created_at;
         $date = substr($created_at, 0, 10);
         
-        return View('Jobs.show', ['job' => $job], ['date' => $date]);
+        return View('Jobs.show')->with('job', $job)->with('date', $date)->with('company', $company);
     }
 
     /**

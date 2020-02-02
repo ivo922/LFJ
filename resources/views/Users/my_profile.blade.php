@@ -9,7 +9,7 @@
     <div class="row justify-content-center" >
         <div id="sidebar" class="col-md-3 text-center">
             <button id="my_profile-menu" class="btn btn-success btn-sm shadow-none tablinks" style="width:100%" onclick="openTab(event, 'my_profile')">My Profile</button>
-            <button id="my_companies-menu" class="btn btn-outline-success btn-sm shadow-none tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'my_profile')">My Companies</button>
+            <button id="my_companies-menu" class="btn btn-outline-success btn-sm shadow-none tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'my_companies')">My Companies</button>
             <button id="change_password-menu" class="btn btn-outline-success btn-sm shadow-none tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'change_password')">Change Password</button>
             <button id="change_email-menu" class="btn btn-outline-success btn-sm shadow-none tablinks" style="margin-top:2px; width:100%" onclick="openTab(event, 'change_email')">Change E-mail</button>
             <button id="delete_account-menu" class="btn btn-danger btn-sm btn-radius shadow-none tablinks" style="margin-top:10px;">Delete Account</button>
@@ -85,7 +85,31 @@
                 </form>
             </div>
 
-        </div>
+        <!--My Companies-->
+            <div id="my_companies" class="card-body tabcontent" style="display: none">
+                <div class="row">
+                @foreach($companies as $key => $value)
+			        <div class="col-md-6">
+				        <div class="card mb-3">
+					        <div class="row no-gutters align-items-center">
+						        <div class="col-md-4">
+							        <img src="<?php echo asset('storage/' . $value->logo)?>" class="card-img img-thumbnail" alt="image" style="object-fit:cover">
+						        </div>
+						        <div class="col-md-8">
+							        <div class="card-body">
+								        <h5 class="card-title"><a href="{{ url('companies', $value->id) }}">{{ $value->name }}</a></h5>
+								        <p class="card-text">{{ substr($value->description, 0, 100) }}...</p>
+							        </div>
+						        </div>
+					        </div>
+                            <div class="float-right position-absolute" style="bottom:5px; right:5px;">
+                                
+                            </div>
+				        </div>
+			        </div>
+                @endforeach
+	            </div>
+            </div>
     </div>
 </div>
 
