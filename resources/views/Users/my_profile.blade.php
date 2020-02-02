@@ -88,6 +88,9 @@
         <!--My Companies-->
             <div id="my_companies" class="card-body tabcontent" style="display: none">
                 <div class="row">
+                <div class="card-header col-md-12">
+                    <span class="float-right"><a href="{{ url('companies/create') }}"><button class="btn btn-success btn-sm">Create</button></a></span>
+                </div>
                 @foreach($companies as $key => $value)
 			        <div class="col-md-6">
 				        <div class="card mb-3">

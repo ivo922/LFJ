@@ -86,6 +86,7 @@
             .footer-black {
                 width: 100%;
                 float: left;
+                bottom:0;
                 margin-top:30px;
                 background-color:#212529;
                 color:white;
@@ -160,6 +161,7 @@
                 <h3>Job searching made easy!</h3>
                 @if(Auth::check())
                 <a href="{{ url('my-profile') }}"><button class="btn btn-sm btn-warning">My Profile</button></a>
+                <a href="{{ url('users') }}"><button class="btn btn-sm btn-warning">Admin Panel</button></a>
                 @else
                 <a href="{{ url('login') }}"><button class="btn btn-sm btn-warning">Sign In</button></a>
                 @endif

@@ -23,19 +23,29 @@
     <link href="{{ asset('css/buttons.css') }}" rel="stylesheet">
 
     <style>
+        .html {
+            height:100vh;
+        }
+
         .background-image {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/front-page-slide.jpg);
             width: 100%;
+            height:100vh;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
 
         body {
+            height: 100vh;
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/front-page-slide.jpg);
             background-repeat: no-repeat;
             background-attachment: fixed;
             font-family: 'Montserrat', sans-serif;
             font-weight: 200;
+        }
+
+        #app {
+            height: 100vh;
         }
 
         .btn-outline-info:hover{
@@ -82,6 +92,7 @@
         .footer-black {
                 width: 100%;
                 float: left;
+                bottom:0;
                 margin-top:30px;
                 background-color:#212529;
                 color:white;
