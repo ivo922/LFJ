@@ -7,7 +7,28 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="card" style="width:1000px; padding:10px 5%;">
+        <div class="card col-md-10 search-field" style="padding:10px 0;">
+			<p class="text-center">
+					Looking for a specific user? <br />Use the search function to find them!.
+			</p>
+			<form action={{ url('usersearch') }} method="POST" role="search">
+					{{ csrf_field() }}
+					<div class="form-group row">
+							<div class="col-md-6 offset-md-4">
+									<input type="text" class="form-control" name="searchField"
+											placeholder="Search!" style="margin: 0 auto">
+							</div>
+					</div>
+					<div class="form-group row mb-0">
+							<div class="col-md-5 offset-md-5">
+									<button type="submit" class="btn btn-success btn-sm">
+											<strong>Search</strong>
+									</button>
+							</div>
+					</div>
+			</form>
+		</div>
+        <div class="card col-md-10" style="padding:10px 5%;">
             <table class="table">
                 <tbody>
                     @foreach($allUsers as $key => $value)

@@ -25,6 +25,9 @@ Route::post('banuser/{id}', 'UsersController@ban');
 Route::post('updatePassword', 'UsersController@updatePassword');
 Route::get('updatePassword', function(){ abort(404); });
 Route::get('my-profile', 'UsersController@myProfile');
+Route::post('jobsearch', 'SearchController@searchJobs');
+Route::post('usersearch', 'SearchController@searchUsers');
+Route::post('companysearch', 'SearchController@searchCompanies');
 
 Route::resource('jobs', 'JobsController');
 Route::resource('users', 'UsersController');

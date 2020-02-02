@@ -57,8 +57,8 @@
                                     <div class="col-md-6">
                                         <select id="type" class="form-control" name="type">
                                             <option value="Full-Time">Full-Time</option>
-                                            <option value="Full-Time">Part-Time</option>
-                                            <option value="Full-Time">Internship</option>
+                                            <option value="Part-Time">Part-Time</option>
+                                            <option value="Internship">Internship</option>
                                         </select>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-success">
                                         Publish
                                         </button>
                                     </div>

@@ -6,7 +6,28 @@
     @endif
 
 <div class="container">
-  <div class="row">
+  <div class="row justidy-content-center">
+		<div class="card col-md-12 search-field" style="padding:10px 0;">
+			<p class="text-center">
+					Looking for your next employer? <br />Use the search function to find it!.
+			</p>
+			<form action={{ url('companysearch') }} method="POST" role="search">
+					{{ csrf_field() }}
+					<div class="form-group row">
+							<div class="col-md-8 offset-md-2">
+									<input type="text" class="form-control" name="searchField"
+											placeholder="Search!" style="margin: 0 auto">
+							</div>
+					</div>
+					<div class="form-group row mb-0">
+							<div class="col-md-5 offset-md-5">
+									<button type="submit" class="btn btn-success btn-sm">
+											<strong>Search</strong>
+									</button>
+							</div>
+					</div>
+			</form>
+		</div>
     @foreach($companies as $key => $value)
 			<div class="col-md-6">
 				<div class="card mb-3">

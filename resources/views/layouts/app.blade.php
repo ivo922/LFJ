@@ -26,11 +26,14 @@
         .background-image {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/front-page-slide.jpg);
             width: 100%;
-            height: 100vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         body {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/front-page-slide.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             font-family: 'Montserrat', sans-serif;
             font-weight: 200;
         }
@@ -70,6 +73,20 @@
         .card {
             border-radius: 0;
         }
+
+        .search-field {
+            margin:20px 0;
+            padding:10px 0;
+        }
+
+        .footer-black {
+                width: 100%;
+                float: left;
+                margin-top:30px;
+                background-color:#212529;
+                color:white;
+                font-weight:900;
+            }
     </style>
 </head>
 <body>
@@ -129,6 +146,9 @@
         <main class="py-4 background-image">
             @yield('content')
         </main>
+        <div class="footer-copyright text-center py-3 col-md-12 footer-black">© 2020 Copyright:
+            <a href="/"> LookingForJob.com</a>
+        </div>
     </div>
 </body>
 </html>

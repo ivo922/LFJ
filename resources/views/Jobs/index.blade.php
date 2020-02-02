@@ -7,10 +7,31 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="card-header col-md-10">
-            <span><a href="/">Home</a> >> <strong>Jobs</strong></span>
+        <div class="card col-md-10 search-field" style="padding:10px 0;">
+            <p class="text-center">
+                Looking for a specific job? <br />Use the search function to find the right job!.
+            </p>
+            <form action={{ url('jobsearch') }} method="POST" role="search">
+                {{ csrf_field() }}
+                <div class="form-group row">
+                    <div class="col-md-6 offset-md-3">
+                        <input type="text" class="form-control" name="searchField"
+                            placeholder="Find a job!" style="margin: 0 auto">
+                    </div>
+                </div>
+                <div class="form-group row mb-0">
+                    <div class="col-md-5 offset-md-5">
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <strong>Search</strong>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-header row col-md-10">
+            <span class="my-auto col-md-10"><a href="/">Home</a> >> <strong>Jobs</strong></span>
             @if(Auth::check())
-            <span class="float-right"><a href="{{ url('jobs/create') }}"><button class="btn btn-success btn-sm">Create</button></a></span>
+            <span class="float-right col-md-2"><a href="{{ url('jobs/create') }}"><button class="btn btn-success btn-sm">Create</button></a></span>
             @endif
         </div>
         <div class="card col-md-10" style="padding:10px 5%;">
